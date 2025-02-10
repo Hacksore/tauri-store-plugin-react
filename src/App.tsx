@@ -22,10 +22,14 @@ function App() {
     <main className="container">
       <h1>Testing settings</h1>
 
-      <input type="text" />
-      <input type="checkbox" checked />
-
-      {testBool ? "true" : "false"}
+      Test bool value: {testBool ? "true" : "false"}
+      <div style={{ width: 200 }}>
+        <label htmlFor="testBool">Test bool</label>
+        <input id="testBool" type="checkbox" checked={testBool ?? false} onChange={(event => {
+          console.log(event.target.checked);
+          settings.set("testBool", event.target.checked);
+        })} />
+      </div>
 
     </main>
   );
