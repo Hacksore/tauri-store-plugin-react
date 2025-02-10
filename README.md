@@ -1,7 +1,6 @@
-# Tauri + React + Typescript
+# tauri-store-plugin-react 
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+Goal is to figure out how to make the plugin for store work really nicely with react
 
-## Recommended IDE Setup
+https://v2.tauri.app/plugin/store/
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
