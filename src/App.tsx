@@ -16,8 +16,8 @@ function AppWrapper() {
         {view === "testBool" && <View value={"testBool"} />}
         {view === "testBool2" && <View value={"testBool2"} />}
 
-        <button onClick={() => setView("testBool")}>View 1</button>
-        <button onClick={() => setView("testBool2")}>View 2</button>
+        <button className="btn" onClick={() => setView("testBool")}>View 1</button>
+        <button className="btn" onClick={() => setView("testBool2")}>View 2</button>
       </SettingContext.Provider>
     </div>
   );
@@ -30,7 +30,7 @@ function View({ value }: { value: string }) {
       {value}: {testBool ? "true" : "false"}
       <div style={{ width: 200 }}>
         <label htmlFor={value}>Test bool</label>
-        <input id={value} type="checkbox" checked={testBool ?? false} onChange={(event => {
+        <input id={value} className="checkbox" type="checkbox" checked={testBool ?? false} onChange={(event => {
           console.log(event.target.checked);
           settings.set(value, event.target.checked);
         })} />
