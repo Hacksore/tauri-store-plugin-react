@@ -29,7 +29,7 @@ function App() {
     setTimeout(() => setSettingsLoaded(false), 2_000);
   }, [allSettings]);
 
-  if (settingsLoaded) return <div>Loading...</div>;
+  if (settingsLoaded) return <div className="container loading-wrapper"><div className="loading">Loading...</div></div>;
 
   return (
     <div className="container p-8" style={{ width: 500 }}>

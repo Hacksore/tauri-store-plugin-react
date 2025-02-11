@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { settings } from "../App";
 
 export const useSettings = () => {
-  // NOTE: not sure if we need this
   const [initialSettings, setInitialSettings] = useState<any | null>(null);
   useEffect(() => {
     settings.keys().then(s => {
