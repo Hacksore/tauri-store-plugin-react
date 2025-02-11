@@ -1,7 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { LazyStore } from "@tauri-apps/plugin-store";
 import "./App.css";
 import { useConfigValue } from "./use-config-value";
+import { useAppStore } from "./store";
 
 export const settings = new LazyStore("config.json");
 export const SettingContext = createContext(settings);
@@ -17,8 +18,8 @@ function AppWrapper() {
         {view === "testBool2" && <View value={"testBool2"} />}
 
         <div className="flex gap-2">
-        <button className="btn btn-neutral w-32" onClick={() => setView("testBool")}>View 1</button>
-        <button className="btn btn-neutral w-32" onClick={() => setView("testBool2")}>View 2</button>
+          <button className="btn btn-neutral w-32" onClick={() => setView("testBool")}>View 1</button>
+          <button className="btn btn-neutral w-32" onClick={() => setView("testBool2")}>View 2</button>
         </div>
       </SettingContext.Provider>
     </div>
@@ -27,6 +28,13 @@ function AppWrapper() {
 
 function View({ value }: { value: string }) {
   const { value: testBool } = useConfigValue(value);
+  const store = useAppStore();
+
+  useEffect(() => {
+    console.log("loading settings...");
+    store.loadSettings({ testBool: true, testBool2: false });
+  }, []);
+
   return (
     <div className="container">
       {value}: {testBool ? "true" : "false"}
@@ -38,6 +46,7 @@ function View({ value }: { value: string }) {
         })} />
       </div>
 
+      <pre>{JSON.stringify({ settings: store.settings })}</pre>
     </div>
   );
 }
