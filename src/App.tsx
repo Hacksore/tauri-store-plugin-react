@@ -10,21 +10,23 @@ function AppWrapper() {
   const [view, setView] = useState("testBool");
 
   return (
-    <SettingContext.Provider value={settings}>
-      View: {view}
-      { view === "testBool" && <View value={"testBool"} /> }
-      { view === "testBool2" && <View value={"testBool2"} /> }
+    <div className="container p-8">
+      <SettingContext.Provider value={settings}>
+        View: {view}
+        {view === "testBool" && <View value={"testBool"} />}
+        {view === "testBool2" && <View value={"testBool2"} />}
 
-      <button onClick={() => setView("testBool")}>View 1</button>
-      <button onClick={() => setView("testBool2")}>View 2</button>
-    </SettingContext.Provider>
+        <button onClick={() => setView("testBool")}>View 1</button>
+        <button onClick={() => setView("testBool2")}>View 2</button>
+      </SettingContext.Provider>
+    </div>
   );
 }
 
 function View({ value }: { value: string }) {
   const { value: testBool } = useConfigValue(value);
   return (
-    <div className="container p-8">
+    <div className="container">
       {value}: {testBool ? "true" : "false"}
       <div style={{ width: 200 }}>
         <label htmlFor={value}>Test bool</label>
