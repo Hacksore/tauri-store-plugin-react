@@ -33,9 +33,10 @@ function View({ value }: { value: string }) {
   const allSettings = useSettings();
 
   useEffect(() => {
+    if (!allSettings) return;
     console.log("loading settings...", allSettings);
     store.loadSettings(allSettings);
-  }, []);
+  }, [allSettings]);
 
   return (
     <div className="container">
@@ -48,7 +49,7 @@ function View({ value }: { value: string }) {
         })} />
       </div>
 
-      <pre>{JSON.stringify({ settings: store.settings, allSettings })}</pre>
+      <pre>{JSON.stringify({ settings: store.settings })}</pre>
     </div>
   );
 }
