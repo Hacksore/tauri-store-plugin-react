@@ -1,8 +1,9 @@
 import { createContext, useEffect, useState } from "react";
 import { LazyStore } from "@tauri-apps/plugin-store";
 import "./App.css";
-import { useConfigValue } from "./use-config-value";
+import { useConfigValue } from "./hooks/use-config-value";
 import { useAppStore } from "./store";
+import { useSettings } from "./hooks/use-settings";
 
 export const settings = new LazyStore("config.json");
 export const SettingContext = createContext(settings);
@@ -29,10 +30,11 @@ function AppWrapper() {
 function View({ value }: { value: string }) {
   const { value: testBool } = useConfigValue(value);
   const store = useAppStore();
+  const allSettings = useSettings();
 
   useEffect(() => {
-    console.log("loading settings...");
-    store.loadSettings({ testBool: true, testBool2: false });
+    console.log("loading settings...", allSettings);
+    store.loadSettings(allSettings);
   }, []);
 
   return (
@@ -46,7 +48,7 @@ function View({ value }: { value: string }) {
         })} />
       </div>
 
-      <pre>{JSON.stringify({ settings: store.settings })}</pre>
+      <pre>{JSON.stringify({ settings: store.settings, allSettings })}</pre>
     </div>
   );
 }

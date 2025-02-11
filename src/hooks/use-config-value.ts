@@ -1,6 +1,6 @@
 import { listen } from "@tauri-apps/api/event";
 import { useContext, useEffect, useState } from "react";
-import { SettingContext } from "./App";
+import { SettingContext } from "../App";
 
 // TODO: make this more better
 // right now it fetch teh value every time for the store which will cause flickering in state while it loads
