@@ -24,6 +24,8 @@ export const useAppStore = create<State & Actions>()(
 
       // NOTE: always perist to tauri but it's not blocking so fire and forget?
       settings.set(key, val);
+      // write to disk
+      settings.save();
 
       return state;
     })

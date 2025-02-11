@@ -2,8 +2,8 @@ import { useAppStore } from "../store";
 
 export const Main = () => {
   const store = useAppStore();
-  const testBool = store.settings["testBool"];
-  const testBool2 = store.settings["testBool2"];
+  const testBool = store.settings["testBool"] || false;
+  const testBool2 = store.settings["testBool2"] || false;
 
   return (
     <div className="container">
@@ -13,7 +13,7 @@ export const Main = () => {
           store.setSettingValue("testBool", event.target.checked)
         })} />
 
-        <label htmlFor="checkbox">testBool2</label>
+        <label htmlFor="testBool2">testBool2</label>
         <input id="testBool2" className="checkbox" type="checkbox" checked={testBool2} onChange={(event => {
           store.setSettingValue("testBool2", event.target.checked)
         })} />
