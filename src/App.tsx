@@ -24,7 +24,7 @@ function AppWrapper() {
 function View({ value }: { value: string }) {
   const { value: testBool } = useConfigValue(value);
   return (
-    <main className="container">
+    <div className="container p-8">
       {value}: {testBool ? "true" : "false"}
       <div style={{ width: 200 }}>
         <label htmlFor={value}>Test bool</label>
@@ -34,7 +34,7 @@ function View({ value }: { value: string }) {
         })} />
       </div>
 
-    </main>
+    </div>
   );
 }
 
