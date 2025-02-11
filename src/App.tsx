@@ -24,8 +24,9 @@ function App() {
     console.log("loading settings...", allSettings);
     // load the zustand store
     store.loadSettings(allSettings);
-    // stop loading..
-    setSettingsLoaded(false);
+
+    // NOTE: two second artifical delay
+    setTimeout(() => setSettingsLoaded(false), 2_000);
   }, [allSettings]);
 
   if (settingsLoaded) return <div>Loading...</div>;

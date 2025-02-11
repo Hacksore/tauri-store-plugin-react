@@ -22,7 +22,7 @@ export const useAppStore = create<State & Actions>()(
     setSettingValue: (key, val) => set((state) => {
       state.settings[key] = val;
 
-      // always perist to tauri but it's not blocking
+      // NOTE: always perist to tauri but it's not blocking so fire and forget?
       settings.set(key, val);
 
       return state;
