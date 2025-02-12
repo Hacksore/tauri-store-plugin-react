@@ -23,11 +23,38 @@ type Actions = {
   loadSettings: (config: any) => void
 }
 
+const getUnseenKeys = (
+  mergedSettings: AppSettings,
+  currentFields: (keyof AppSettings)[]
+): (keyof AppSettings)[] => {
+  const unseenKeys = (Object.keys(mergedSettings) as (keyof AppSettings)[]).filter(
+    (key) => !currentFields.includes(key)
+  );
+  return unseenKeys;
+};
+
 export const useAppStore = create<State & Actions>()(
   immer((set) => ({
     settings: DEFAULT_SETTINGS,
-    loadSettings: (settings: any) => set((state) => {
-      state.settings = settings;
+    loadSettings: (rawSettings: AppSettings) => set((state) => {
+      // handle merging new settings that are the input object
+      const currentFields = Object.keys(rawSettings) as AppSettingsKeys[];
+      const mergedSettings = { ...DEFAULT_SETTINGS, ...rawSettings };
+
+      // give me the new keys
+      const unseenKeys = getUnseenKeys(mergedSettings, currentFields);
+
+      if (unseenKeys.length >= 0) {
+        for (const key of unseenKeys) {
+          if (currentFields.includes(key)) continue;
+          settings.set(key, mergedSettings[key]);
+        }
+
+        console.log("saving settings...");
+        settings.save();
+      }
+
+      state.settings = mergedSettings;
 
       return state;
     }),
