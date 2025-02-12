@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { settings } from "./App";
 
-const DEFAULT_SETTINGS = {
+const DEFAULT_SETTINGS: AppSettings = {
 	testBool: false,
 	testBool2: false,
 };
