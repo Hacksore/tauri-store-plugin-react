@@ -15,6 +15,7 @@ function App() {
 	const allSettings = useSettings();
 	const [settingsLoaded, setSettingsLoaded] = useState(false);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		if (!allSettings) return;
 		// wait for all the config values to be loaded
@@ -26,7 +27,7 @@ function App() {
 
 		// NOTE: two second artifical delay
 		setTimeout(() => setSettingsLoaded(false), 2_000);
-	}, [allSettings, store]);
+	}, [allSettings]);
 
 	if (settingsLoaded)
 		return (
