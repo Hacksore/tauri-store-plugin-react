@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { LazyStore } from "@tauri-apps/plugin-store";
 import "./App.css";
-import { useConfigValue } from "./hooks/use-config-value";
 import { useAppStore } from "./store";
 import { useSettings } from "./hooks/use-settings";
 import { Main } from "./views/main";

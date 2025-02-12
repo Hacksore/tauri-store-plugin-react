@@ -2,18 +2,30 @@ import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 import { settings } from './App'
 
+const DEFAULT_SETTINGS = {
+  testBool: false,
+  testBool2: false,
+}
+
+interface AppSettings {
+  testBool: boolean;
+  testBool2: boolean;
+}
+
+type AppSettingsKeys = keyof AppSettings;
+
 type State = {
-  settings: Record<string, unknown>
+  settings: AppSettings;
 }
 
 type Actions = {
-  setSettingValue: (key: string, value: any) => void
+  setSettingValue: <T extends AppSettingsKeys>(key: T, value: AppSettings[T]) => void;
   loadSettings: (config: any) => void
 }
 
 export const useAppStore = create<State & Actions>()(
   immer((set) => ({
-    settings: {},
+    settings: DEFAULT_SETTINGS,
     loadSettings: (settings: any) => set((state) => {
       state.settings = settings;
 
