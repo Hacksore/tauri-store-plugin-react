@@ -5,6 +5,7 @@ use tauri_plugin_store::StoreExt;
 #[tauri::command]
 fn test_command(window: WebviewWindow) {
   let app = window.app_handle();
+  // TODO: we should be able to hoist this in the app global state but need to figure that out
   let store = app.store("config.json").unwrap();
   let mut rng = rand::thread_rng();
   let n1: u16 = rng.gen();
@@ -12,7 +13,7 @@ fn test_command(window: WebviewWindow) {
   println!("Setting the state value to something random: {n1}");
 
   store.set("random_value", n1);
-  store.save();
+  _ = store.save();
 }
 
 // struct AppState {
@@ -28,8 +29,9 @@ pub fn run() {
       let store = app.store("config.json")?;
       // let app_state = AppState { store };
 
-      // TODO: figure out how to manage the config so we can use it else where
-      // app.manage(app_state); // manage this store value in an arc
+      // TODO: figure out how to manage the config so we can use it else where like the command
+      // handler above so we don't have more than one instance loaded
+      // app.manage(app_state); // manage this store value in an arc/mutex
 
       println!("Hello, world!, store: {:?}", store.keys());
 
