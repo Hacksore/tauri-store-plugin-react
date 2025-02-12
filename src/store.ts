@@ -23,7 +23,7 @@ type Actions = {
 		key: T,
 		value: AppSettings[T],
 	) => void;
-	loadSettings: (config: any) => void;
+	loadSettings: (config: AppSettings) => void;
 };
 
 const getUnseenKeys = (

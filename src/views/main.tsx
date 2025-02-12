@@ -2,8 +2,8 @@ import { useAppStore } from "../store";
 
 export const Main = () => {
 	const store = useAppStore();
-	const testBool = store.settings["testBool"] || false;
-	const testBool2 = store.settings["testBool2"] || false;
+	const testBool = store.settings.testBool;
+	const testBool2 = store.settings.testBool2;
 
 	return (
 		<div className="container">

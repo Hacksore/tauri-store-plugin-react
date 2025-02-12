@@ -40,12 +40,14 @@ function App() {
 			<SettingContext.Provider value={settings}>
 				<div className="flex gap-2 py-10">
 					<button
+            type="button"
 						className="btn btn-neutral w-32"
 						onClick={() => setView("main")}
 					>
 						Main
 					</button>
 					<button
+            type="button"
 						className="btn btn-neutral w-32"
 						onClick={() => setView("secondary")}
 					>

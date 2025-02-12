@@ -8,6 +8,8 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
+    "lint": "pnpm biome lint src/",
+    "format": "pnpm biome format --write src/",
 		"tauri": "tauri"
 	},
 	"dependencies": {
