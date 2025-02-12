@@ -7,12 +7,12 @@ const DEFAULT_SETTINGS = {
   testBool2: false,
 }
 
-interface AppSettings {
+export interface AppSettings {
   testBool: boolean;
   testBool2: boolean;
 }
 
-type AppSettingsKeys = keyof AppSettings;
+export type AppSettingsKeys = keyof AppSettings;
 
 type State = {
   settings: AppSettings;

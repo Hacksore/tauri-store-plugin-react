@@ -42,6 +42,8 @@ function App() {
         {view === "main" && <Main />}
         {view === "secondary" && <Secondary />}
 
+        {JSON.stringify(store.settings, null, 2)}
+
       </SettingContext.Provider>
     </div>
   );

@@ -1,16 +1,37 @@
-import { useEffect, useState } from "react";
-import { settings } from "../App";
+import { useEffect, useState } from 'react';
+import { settings } from '../App';
+import { AppSettings } from '../store';
 
 export const useSettings = () => {
-  const [initialSettings, setInitialSettings] = useState<any | null>(null);
+  const [initialSettings, setInitialSettings] = useState<AppSettings | null>(
+    null
+  );
+
   useEffect(() => {
-    settings.keys().then(s => {
-      const promises = s.map(async key => {
-        const value = await settings.get(key);
-        setInitialSettings(prev => ({ ...prev, [key]: value }));
-      });
-      Promise.all(promises);
-    });
+    const loadSettings = async () => {
+      try {
+        const keys = await settings.keys();
+        const loadedSettings: Partial<AppSettings> = {};
+
+        for (const key of keys) {
+          try {
+            const value = await settings.get(key);
+
+            // Type assertion to handle potential type mismatches.  Important!
+            loadedSettings[key as keyof AppSettings] = value as AppSettings[keyof AppSettings];
+          } catch (error) {
+            console.error(`Error loading setting for key ${key}:`, error);
+          }
+        }
+
+        setInitialSettings(loadedSettings as AppSettings); // Cast to AppSettings
+      } catch (error) {
+        console.error('Error loading settings keys:', error);
+      }
+    };
+
+    loadSettings();
   }, []);
+
   return initialSettings;
 };
