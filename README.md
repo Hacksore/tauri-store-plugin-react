@@ -9,12 +9,13 @@ This is mainly to figure out how overlayed will handle the app settings with the
 - Front end (react) writes will use zustand actions and we can call the `@tauri-apps/plugin-store` to update/save the new value
 - Backend (tauri) writes will dispatch a `store://change` event and we will update `zustand` store
 
-### Goals / TODO
+### Goals
 
-- [x] Full typescript support
-- [x] Handle new config keys getting merged in
-- [ ] Handle rust setting a value and the `zustand` store should update
+- [x] Typescript support ([minus this line](https://github.com/Hacksore/tauri-store-plugin-react/blob/master/src/hooks/use-settings.ts#L12))
+- [x] Handle new config keys getting merged
+- [x] Handle rust setting a value and the `zustand` store should update
 
 ### Demo
 
-https://github.com/user-attachments/assets/2b6b4945-1180-4f91-a6e1-7349f651169d
+https://github.com/user-attachments/assets/abab7995-acdb-44e0-a75c-fcdf0468f526
+
