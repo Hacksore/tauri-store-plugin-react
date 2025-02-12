@@ -31,7 +31,8 @@ function App() {
 
 	if (settingsLoaded)
 		return (
-			<div className="container loading-wrapper">
+			<div className="loading-wrapper gap-10">
+				<h2 className="text-4xl font-bold">Artifical delay while loading...</h2>
 				<div className="loading loading-dots loading-lg">Loading...</div>
 			</div>
 		);
@@ -41,16 +42,18 @@ function App() {
 			<SettingContext.Provider value={settings}>
 				<div className="flex gap-2 py-10">
 					<button
-            type="button"
+						type="button"
 						className="btn btn-neutral w-32"
 						onClick={() => setView("main")}
+						style={{ backgroundColor: view === "main" ? "#3b82f6" : "" }}
 					>
 						Main
 					</button>
 					<button
-            type="button"
+						type="button"
 						className="btn btn-neutral w-32"
 						onClick={() => setView("secondary")}
+						style={{ backgroundColor: view === "secondary" ? "#3b82f6" : "" }}
 					>
 						Seconday
 					</button>
@@ -59,7 +62,7 @@ function App() {
 				{view === "main" && <Main />}
 				{view === "secondary" && <Secondary />}
 
-				{JSON.stringify(store.settings, null, 2)}
+				<pre>{JSON.stringify(store.settings, null, 2)}</pre>
 			</SettingContext.Provider>
 		</div>
 	);

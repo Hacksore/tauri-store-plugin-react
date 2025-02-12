@@ -6,8 +6,8 @@ export const Main = () => {
 	const testBool2 = store.settings.testBool2;
 
 	return (
-		<div className="container">
-			<div className="flex gap-2 py-2">
+		<div className="container py-4">
+			<div className="flex gap-2">
 				<label htmlFor="testBool">testBool</label>
 				<input
 					id="testBool"
