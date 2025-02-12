@@ -32,7 +32,7 @@ function App() {
 	if (settingsLoaded)
 		return (
 			<div className="loading-wrapper gap-10">
-				<h2 className="text-4xl font-bold">Artifical delay while loading...</h2>
+				<h2 className="text-4xl font-bold">Artificial delay while loading...</h2>
 				<div className="loading loading-dots loading-lg">Loading...</div>
 			</div>
 		);
