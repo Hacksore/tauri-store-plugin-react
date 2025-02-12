@@ -1,3 +1,4 @@
+import { invoke } from "@tauri-apps/api/core";
 import { useAppStore } from "../store";
 
 export const Main = () => {
@@ -30,6 +31,16 @@ export const Main = () => {
 					}}
 				/>
 			</div>
+			<button
+				className="btn"
+        type="button"
+				onClick={async () => {
+					console.log("triggering rust value change");
+          await invoke("test_command");
+				}}
+			>
+				Trigger rust value change
+			</button>
 		</div>
 	);
 };
