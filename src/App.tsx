@@ -13,29 +13,32 @@ function App() {
 	const [view, setView] = useState("main");
 	const store = useAppStore();
 	const allSettings = useSettings();
-	const [settingsLoaded, setSettingsLoaded] = useState(false);
+	const [loadingSettings, setLoadingSettings] = useState(false);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		if (!allSettings) return;
 		// wait for all the config values to be loaded
-		setSettingsLoaded(true);
+		setLoadingSettings(true);
 
 		console.log("loading settings...", allSettings);
 		// load the zustand store
 		store.loadSettings(allSettings);
 
 		// NOTE: two second artifical delay
-		setTimeout(() => setSettingsLoaded(false), 2_000);
+		setTimeout(() => setLoadingSettings(false), 2_000);
 	}, [allSettings]);
 
-	if (settingsLoaded)
+	if (loadingSettings) {
 		return (
 			<div className="loading-wrapper gap-10">
-				<h2 className="text-4xl font-bold">Artificial delay while loading...</h2>
+				<h2 className="text-4xl font-bold">
+					Artificial delay while loading...
+				</h2>
 				<div className="loading loading-dots loading-lg">Loading...</div>
 			</div>
 		);
+	}
 
 	return (
 		<div className="container p-8" style={{ width: 500 }}>
