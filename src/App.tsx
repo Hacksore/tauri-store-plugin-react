@@ -7,7 +7,6 @@ import { Main } from "./views/main";
 import { Secondary } from "./views/secondary";
 
 export const settings = new LazyStore("config.json");
-export const SettingContext = createContext(settings);
 
 function App() {
 	const [view, setView] = useState("main");
@@ -42,31 +41,29 @@ function App() {
 
 	return (
 		<div className="container p-8" style={{ width: 500 }}>
-			<SettingContext.Provider value={settings}>
-				<div className="flex gap-2 py-10">
-					<button
-						type="button"
-						className="btn btn-neutral w-32"
-						onClick={() => setView("main")}
-						style={{ backgroundColor: view === "main" ? "#3b82f6" : "" }}
-					>
-						Main
-					</button>
-					<button
-						type="button"
-						className="btn btn-neutral w-32"
-						onClick={() => setView("secondary")}
-						style={{ backgroundColor: view === "secondary" ? "#3b82f6" : "" }}
-					>
-						Seconday
-					</button>
-				</div>
-				<h2 className="text-5xl font-bold pb-2">{view}</h2>
-				{view === "main" && <Main />}
-				{view === "secondary" && <Secondary />}
+			<div className="flex gap-2 py-10">
+				<button
+					type="button"
+					className="btn btn-neutral w-32"
+					onClick={() => setView("main")}
+					style={{ backgroundColor: view === "main" ? "#3b82f6" : "" }}
+				>
+					Main
+				</button>
+				<button
+					type="button"
+					className="btn btn-neutral w-32"
+					onClick={() => setView("secondary")}
+					style={{ backgroundColor: view === "secondary" ? "#3b82f6" : "" }}
+				>
+					Seconday
+				</button>
+			</div>
+			<h2 className="text-5xl font-bold pb-2">{view}</h2>
+			{view === "main" && <Main />}
+			{view === "secondary" && <Secondary />}
 
-				<pre>{JSON.stringify(store.settings, null, 2)}</pre>
-			</SettingContext.Provider>
+			<pre>{JSON.stringify(store.settings, null, 2)}</pre>
 		</div>
 	);
 }

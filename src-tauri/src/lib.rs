@@ -24,6 +24,9 @@ pub fn run() {
     .plugin(tauri_plugin_opener::init())
     .plugin(tauri_plugin_store::Builder::default().build())
     .setup(move |app| {
+      let main_window = app.get_webview_window("main").unwrap();
+      main_window.open_devtools();
+
       let store = app.store(CONFIG_FILE)?;
       let boolean_value = store.get("testBool").and_then(|v| v.as_bool()).unwrap();
 
