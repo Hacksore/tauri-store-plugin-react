@@ -25,7 +25,9 @@ pub fn run() {
     .plugin(tauri_plugin_store::Builder::default().build())
     .setup(move |app| {
       let store = app.store(CONFIG_FILE)?;
+      let boolean_value = store.get("testBool").and_then(|v| v.as_bool()).unwrap();
 
+      println!("Store bool: {:?}", boolean_value);
       println!("Store keys: {:?}", store.entries());
 
       Ok(())
